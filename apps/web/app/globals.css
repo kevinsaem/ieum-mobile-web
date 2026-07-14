@@ -1,0 +1,118 @@
+:root {
+  --accent: #ff6f0f;
+  --ink: #191b1f;
+  --muted: #727780;
+  --line: #eceef0;
+  --paper: #ffffff;
+  --soft: #fff7f2;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body {
+  background: #e8ebe9;
+  color: var(--ink);
+  font-family: Pretendard, "Noto Sans KR", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.shell {
+  width: min(100%, 430px);
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+  background: var(--paper);
+  box-shadow: 0 20px 70px rgb(21 31 26 / 14%);
+}
+
+.appbar {
+  min-height: 52px;
+  padding: max(10px, env(safe-area-inset-top)) 18px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { font-size: 18px; font-weight: 900; letter-spacing: -.04em; }
+.brand small { font-size: 10px; color: var(--accent); }
+.phase {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #f3f4f5;
+  color: #60656c;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.hero { padding: 24px 18px 15px; }
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.hero h1 { margin: 0; font-size: 29px; letter-spacing: -.055em; }
+.hero > p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.milestone {
+  margin: 6px 18px 20px;
+  padding: 16px;
+  border: 1px solid #ffd9bf;
+  border-radius: 15px;
+  background: var(--soft);
+}
+.milestone > span { color: var(--accent); font-size: 9px; font-weight: 900; }
+.milestone h2 { margin: 8px 0 12px; font-size: 17px; letter-spacing: -.035em; }
+.milestone ol { margin: 0; padding-left: 20px; color: #6c5547; font-size: 11px; line-height: 1.8; }
+
+.roles, .foundation { padding: 0 18px; }
+.sectionTitle { display: flex; align-items: center; justify-content: space-between; }
+.sectionTitle h2, .foundation h2 { margin: 0 0 9px; font-size: 16px; }
+.sectionTitle span { color: var(--muted); font-size: 10px; }
+.roleList { border-top: 1px solid var(--line); }
+.roleCard {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 82px;
+  border-bottom: 1px solid var(--line);
+}
+.roleSymbol {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #f3f4f5;
+  font-weight: 900;
+  font-size: 20px;
+}
+.roleCard h3 { margin: 0 0 5px; font-size: 15px; }
+.roleCard p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
+
+.foundation { margin-top: 22px; }
+.foundation ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.foundation li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+}
+.foundation span { color: var(--muted); text-align: right; }
+
+@media (max-width: 360px) {
+  .hero { padding-top: 19px; }
+  .hero h1 { font-size: 25px; }
+  .milestone { margin-inline: 14px; }
+  .roles, .foundation, .hero { padding-inline: 14px; }
+}
