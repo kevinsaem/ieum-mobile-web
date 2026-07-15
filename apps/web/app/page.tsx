@@ -68,9 +68,9 @@ export default function HomePage() {
       <section className="foundation" aria-labelledby="foundation-heading">
         <h2 id="foundation-heading">이번 기반 작업</h2>
         <ul>
-          <li><strong>API</strong><span>FastAPI health 확인</span></li>
-          <li><strong>상태</strong><span>후원·케이스·매칭 계약</span></li>
-          <li><strong>다음</strong><span>로그인·조직·역할 권한</span></li>
+          <li><strong>API</strong><span>등록·보완·승인 API</span></li>
+          <li><strong>상태</strong><span>감사 로그·연결 노출 규칙</span></li>
+          <li><strong>다음</strong><span>PostgreSQL·사진 업로드</span></li>
         </ul>
       </section>
     </main>

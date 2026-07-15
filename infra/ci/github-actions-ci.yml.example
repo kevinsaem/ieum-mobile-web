@@ -17,6 +17,8 @@ jobs:
         with:
           python-version: "3.11"
       - run: python -m pip install -e '.[dev]'
+      - run: DATABASE_URL=sqlite+pysqlite:///./ci.db alembic upgrade head
+      - run: DATABASE_URL=sqlite+pysqlite:///./ci.db alembic check
       - run: PYTHONPATH=. pytest tests -q
 
   web:

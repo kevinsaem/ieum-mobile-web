@@ -16,5 +16,6 @@ describe("1차 모바일웹 홈", () => {
     expect(screen.getByText("후원자")).toBeInTheDocument();
     expect(screen.getByText("협의체 위원")).toBeInTheDocument();
     expect(screen.getByText("운영자")).toBeInTheDocument();
+    expect(screen.getByText("등록·보완·승인 API")).toBeInTheDocument();
   });
 });
