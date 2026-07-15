@@ -16,7 +16,7 @@ from sqlalchemy.orm import Session
 
 from app.db import get_db
 from app.models import LoginThrottle, User
-from app.schemas import LoginRequest, TokenResponse
+from app.schemas import LoginRequest, SessionUser, TokenResponse
 from app.security import (
     create_access_token,
     decode_access_token,
@@ -197,7 +197,16 @@ def login(
         role=user.role,
         organization_id=user.organization_id,
     )
-    return TokenResponse(access_token=token)
+    return TokenResponse(
+        access_token=token,
+        user=SessionUser(
+            id=user.id,
+            name=user.name,
+            role=user.role,
+            organization_id=user.organization_id,
+            organization_name=user.organization.name if user.organization else None,
+        ),
+    )
 
 
 def current_user(

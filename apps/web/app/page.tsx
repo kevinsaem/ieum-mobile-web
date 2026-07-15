@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const roles = [
   {
     symbol: "心",
@@ -33,6 +35,9 @@ export default function HomePage() {
           세 역할이 하나의 업무를 처음부터 끝까지 안전하게 처리하는 운영용
           모바일웹을 개발합니다.
         </p>
+        <Link className="primaryLink" href="/login">
+          로그인하고 시작하기
+        </Link>
       </section>
 
       <section className="milestone" aria-labelledby="first-milestone">

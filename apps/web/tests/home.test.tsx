@@ -17,5 +17,8 @@ describe("1차 모바일웹 홈", () => {
     expect(screen.getByText("협의체 위원")).toBeInTheDocument();
     expect(screen.getByText("운영자")).toBeInTheDocument();
     expect(screen.getByText("등록·보완·승인 API")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "로그인하고 시작하기" }),
+    ).toHaveAttribute("href", "/login");
   });
 });

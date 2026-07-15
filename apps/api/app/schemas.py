@@ -9,9 +9,18 @@ class LoginRequest(BaseModel):
     password: str = Field(min_length=8, max_length=128)
 
 
+class SessionUser(BaseModel):
+    id: str
+    name: str
+    role: Literal["DONOR", "MEMBER", "ADMIN"]
+    organization_id: str | None
+    organization_name: str | None
+
+
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
+    user: SessionUser
 
 
 class OfferCreate(BaseModel):

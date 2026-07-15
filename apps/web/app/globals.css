@@ -1,5 +1,5 @@
 :root {
-  --accent: #ff6f0f;
+  --accent: #c2410c;
   --ink: #191b1f;
   --muted: #727780;
   --line: #eceef0;
@@ -54,11 +54,23 @@ body {
   letter-spacing: .08em;
 }
 .hero h1 { margin: 0; font-size: 29px; letter-spacing: -.055em; }
-.hero > p:last-child {
+.hero > p:last-of-type {
   margin: 10px 0 0;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
+}
+.primaryLink {
+  min-height: 48px;
+  margin-top: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 850;
+  text-decoration: none;
 }
 
 .milestone {
@@ -109,6 +121,112 @@ body {
   font-size: 11px;
 }
 .foundation span { color: var(--muted); text-align: right; }
+
+.backLink {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--ink);
+  font-size: 22px;
+  text-decoration: none;
+}
+.authShell .appbar { justify-content: initial; gap: 10px; }
+.authShell .phase { margin-left: auto; }
+.authPanel { padding: 30px 18px; }
+.authPanel h1 { margin: 0; font-size: 27px; letter-spacing: -.05em; }
+.supportText { margin: 10px 0 24px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.formStack { display: grid; gap: 16px; }
+.formStack label { display: grid; gap: 8px; font-size: 12px; font-weight: 800; }
+.formStack input,
+.formStack select,
+.formStack textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 13px;
+  border: 1px solid #dfe2e5;
+  border-radius: 11px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  outline: none;
+}
+.formStack textarea { min-height: 96px; resize: vertical; }
+.formStack input:focus,
+.formStack select:focus,
+.formStack textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgb(255 111 15 / 12%); }
+.primaryButton,
+.secondaryButton,
+.dangerButton {
+  min-height: 48px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.primaryButton { background: var(--accent); color: white; }
+.secondaryButton { background: #f1f3f4; color: var(--ink); }
+.dangerButton { background: #fff0ef; color: #b02a20; }
+.primaryButton:disabled,
+.secondaryButton:disabled,
+.dangerButton:disabled { cursor: wait; opacity: .55; }
+.formError { margin: 0; color: #b02a20; font-size: 12px; line-height: 1.5; }
+
+.workShell { padding-bottom: max(30px, env(safe-area-inset-bottom)); }
+.workAppbar { min-height: 60px; }
+.accountLine { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
+.textButton { min-width: 44px; min-height: 44px; padding: 0 8px; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 11px; font-weight: 800; cursor: pointer; }
+.workIntro { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px; }
+.workIntro h1 { margin: 0; font-size: 24px; letter-spacing: -.05em; }
+.workIntro .eyebrow { margin-bottom: 4px; }
+.compactButton { min-height: 44px; white-space: nowrap; }
+.formCard { margin: 0 18px 18px; padding: 16px; border: 1px solid #ffd9bf; border-radius: 15px; background: var(--soft); }
+.formCard .sectionTitle h2 { margin: 0; }
+.formColumns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.feed { border-top: 1px solid var(--line); }
+.offerCard { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 13px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.offerThumb { width: 92px; height: 92px; display: grid; place-items: center; border-radius: 12px; background: #f4f0eb; color: #9b6a4a; font-size: 26px; font-weight: 900; }
+.offerBody { min-width: 0; }
+.offerMeta { display: flex; justify-content: space-between; color: var(--muted); font-size: 9px; font-weight: 750; }
+.offerBody h2 { margin: 5px 0; overflow: hidden; font-size: 15px; letter-spacing: -.025em; text-overflow: ellipsis; white-space: nowrap; }
+.offerBody > p { margin: 0 0 8px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+.statusBadge { display: inline-flex; min-height: 24px; align-items: center; padding: 0 8px; border-radius: 999px; background: #f1f3f4; color: #555b62; font-size: 9px; font-weight: 850; }
+.status-pending_review { background: #fff3e9; color: #b84e08; }
+.status-needs_revision { background: #fff0ef; color: #a32a22; }
+.status-available { background: #edf8ef; color: #27743a; }
+.status-rejected { background: #f1f3f4; color: #666; }
+.offerBody .reviewReason { margin-top: 7px; padding: 7px 9px; border-radius: 8px; background: #fff0ef; color: #8f3028; font-size: 9px; }
+.cardAction { width: 100%; min-height: 44px; margin-top: 8px; }
+.emptyState { display: grid; gap: 7px; padding: 42px 18px; color: var(--muted); text-align: center; }
+.emptyState strong { color: var(--ink); font-size: 14px; }
+.emptyState span { font-size: 11px; }
+.pageMessage { margin: 0 18px 14px; padding: 11px 12px; border-radius: 10px; font-size: 11px; }
+.errorMessage { background: #fff0ef; color: #9a2921; }
+.noticeMessage { background: #fff7e6; color: #7a3d00; }
+.countBadge { min-width: 44px; min-height: 32px; display: grid; place-items: center; border-radius: 999px; background: #f1f3f4; color: var(--muted); font-size: 10px; font-weight: 850; }
+.reviewFeed { display: grid; gap: 12px; padding: 0 18px 18px; }
+.reviewCard { padding: 15px; border: 1px solid var(--line); border-radius: 14px; background: white; }
+.reviewCard h2 { margin: 6px 0 12px; font-size: 16px; letter-spacing: -.03em; }
+.detailGrid { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-block: 1px solid var(--line); }
+.detailGrid div { padding: 9px 5px; }
+.detailGrid dt { color: var(--muted); font-size: 9px; }
+.detailGrid dd { margin: 4px 0 0; font-size: 10px; font-weight: 750; }
+.descriptionText { margin: 12px 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+.reviewLabel { display: grid; gap: 7px; font-size: 11px; font-weight: 800; }
+.reviewLabel textarea { min-height: 76px; padding: 10px; border: 1px solid #dfe2e5; border-radius: 10px; font: inherit; font-size: 11px; resize: vertical; }
+.reviewLabel textarea:focus { border-color: var(--accent); outline: 0; box-shadow: 0 0 0 3px rgb(255 111 15 / 12%); }
+.reviewActions { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-top: 10px; }
+.reviewActions button { min-width: 0; padding-inline: 6px; }
+.memberIntro { padding-bottom: 10px; }
+.memberIntro .supportText { margin: 7px 0 0; }
+.filterBar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; padding: 0 18px 13px; }
+.filterChip { min-width: 0; min-height: 44px; padding: 0 5px; border: 1px solid var(--line); border-radius: 10px; background: white; color: var(--muted); font: inherit; font-size: 10px; font-weight: 800; cursor: pointer; }
+.filterChip.active { border-color: var(--ink); background: var(--ink); color: white; }
 
 @media (max-width: 360px) {
   .hero { padding-top: 19px; }

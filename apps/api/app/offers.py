@@ -74,6 +74,21 @@ def list_pending_offer_reviews(
     return [offer_read(offer) for offer in offers]
 
 
+@router.get("/mine", response_model=list[OfferRead])
+def list_my_offers(
+    db: Session = Depends(get_db),
+    user: User = Depends(require_roles("DONOR")),
+) -> list[OfferRead]:
+    if not user.organization_id:
+        return []
+    offers = db.scalars(
+        select(Offer)
+        .where(Offer.organization_id == user.organization_id)
+        .order_by(Offer.created_at.desc(), Offer.id.desc())
+    ).all()
+    return [offer_read(offer) for offer in offers]
+
+
 @router.get("/{offer_id}/audit", response_model=list[AuditEventRead])
 def list_offer_audit(
     offer_id: str,
