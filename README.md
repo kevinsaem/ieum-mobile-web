@@ -42,7 +42,9 @@ infra      배포와 백업 구성
 - 협의체 위원 연결 가능 후원·카테고리 필터
 - 계정/IP DB 공유 로그인 제한과 감사 가능한 상태 전이
 
-현재 GitHub Pages는 정적 웹 미리보기이며, 운영 API는 별도 HTTPS 서버에 배포해야 합니다.
+정적 웹 미리보기: https://kevinsaem.github.io/ieum-mobile-web/
+
+현재 GitHub Pages는 UI 미리보기이며, 운영 API는 별도 HTTPS 서버에 배포해야 합니다. API 주소가 없는 Pages 빌드는 로그인 정보를 네트워크로 전송하지 않습니다.
 
 ## 개발 명령
 
