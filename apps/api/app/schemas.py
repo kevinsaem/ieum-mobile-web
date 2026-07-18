@@ -1,12 +1,25 @@
 from datetime import date, datetime
+import re
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field, field_validator
 
 
 class LoginRequest(BaseModel):
-    email: str = Field(min_length=3, max_length=254)
-    password: str = Field(min_length=8, max_length=128)
+    login_id: str = Field(
+        min_length=3,
+        max_length=254,
+        validation_alias=AliasChoices("login_id", "email"),
+    )
+    password: str = Field(min_length=6, max_length=128)
+
+    @field_validator("login_id")
+    @classmethod
+    def login_id_must_be_number_or_email(cls, value: str) -> str:
+        normalized = value.strip().lower()
+        if "@" in normalized or re.fullmatch(r"[0-9]{6}", normalized):
+            return normalized
+        raise ValueError("사용자 번호 6자리를 입력해 주세요.")
 
 
 class SessionUser(BaseModel):

@@ -55,6 +55,19 @@ def test_login_rate_limit_blocks_repeated_failures(client: TestClient) -> None:
     assert blocked.json()["detail"] == "로그인 시도가 너무 많습니다. 잠시 후 다시 시도해 주세요."
 
 
+def test_login_aliases_share_one_account_limit(client: TestClient) -> None:
+    number_payload = {"login_id": "100001", "password": "wrong-password"}
+    email_payload = {"email": "donor@ieum.local", "password": "wrong-password"}
+
+    for _ in range(3):
+        assert client.post("/auth/login", json=number_payload).status_code == 401
+    for _ in range(2):
+        assert client.post("/auth/login", json=email_payload).status_code == 401
+
+    blocked = client.post("/auth/login", json=number_payload)
+    assert blocked.status_code == 429
+
+
 def test_successful_login_resets_failure_count(client: TestClient) -> None:
     invalid = {"email": "donor@ieum.local", "password": "wrong-password"}
     for _ in range(4):

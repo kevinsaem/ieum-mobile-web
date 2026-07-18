@@ -37,6 +37,7 @@ def client(tmp_path) -> Generator[TestClient, None, None]:
                 User(
                     id="user-donor",
                     email="donor@ieum.local",
+                    login_id="100001",
                     password_hash=hash_password("test-password"),
                     name="정담 담당자",
                     role="DONOR",
@@ -46,6 +47,7 @@ def client(tmp_path) -> Generator[TestClient, None, None]:
                 User(
                     id="user-other-donor",
                     email="other-donor@ieum.local",
+                    login_id="100002",
                     password_hash=hash_password("test-password"),
                     name="다른 후원 담당자",
                     role="DONOR",
@@ -55,6 +57,7 @@ def client(tmp_path) -> Generator[TestClient, None, None]:
                 User(
                     id="user-member",
                     email="member@ieum.local",
+                    login_id="200001",
                     password_hash=hash_password("test-password"),
                     name="김이음",
                     role="MEMBER",
@@ -64,9 +67,29 @@ def client(tmp_path) -> Generator[TestClient, None, None]:
                 User(
                     id="user-admin",
                     email="admin@ieum.local",
+                    login_id="900001",
                     password_hash=hash_password("test-password"),
                     name="운영 담당자",
                     role="ADMIN",
+                    organization_id=council_org.id,
+                    is_active=True,
+                ),
+                User(
+                    id="user-simple",
+                    email="simple@ieum.local",
+                    login_id="700001",
+                    password_hash=hash_password("246810"),
+                    name="간편 로그인 사용자",
+                    role="MEMBER",
+                    organization_id=council_org.id,
+                    is_active=True,
+                ),
+                User(
+                    id="user-legacy",
+                    email="legacy@ieum.local",
+                    password_hash=hash_password("legacy-password"),
+                    name="기존 사용자",
+                    role="MEMBER",
                     organization_id=council_org.id,
                     is_active=True,
                 ),

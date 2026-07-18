@@ -125,8 +125,8 @@ def _increment_throttle(
     return int(row.attempt_count), window_started
 
 
-def _reserve_login_attempt(db: Session, *, email: str, client_ip: str) -> str:
-    account_key = _throttle_key("account", email)
+def _reserve_login_attempt(db: Session, *, identifier: str, client_ip: str) -> str:
+    account_key = _throttle_key("account", identifier)
     ip_key = _throttle_key("ip", client_ip)
     now = datetime.now(timezone.utc)
     expired_before = now - timedelta(seconds=LOGIN_WINDOW_SECONDS)
@@ -177,19 +177,23 @@ def login(
 ) -> TokenResponse:
     peer = request.client.host if request.client is not None else "unknown"
     client_key = resolve_client_ip(peer, request.headers.get("x-forwarded-for"))
-    normalized_email = payload.email.strip().lower()
+    identifier = payload.login_id
+    if "@" in identifier:
+        user = db.scalar(select(User).where(User.email == identifier))
+    else:
+        user = db.scalar(select(User).where(User.login_id == identifier))
+    throttle_identity = f"user:{user.id}" if user is not None else f"unknown:{identifier}"
     account_key = _reserve_login_attempt(
         db,
-        email=normalized_email,
+        identifier=throttle_identity,
         client_ip=client_key,
     )
-    user = db.scalar(select(User).where(User.email == normalized_email))
     candidate_hash = user.password_hash if user is not None else _dummy_password_hash
     password_matches = verify_password(payload.password, candidate_hash)
     if user is None or not user.is_active or not password_matches:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="이메일 또는 비밀번호를 확인해 주세요.",
+            detail="사용자 번호 또는 비밀번호를 확인해 주세요.",
         )
     _reset_account_throttle(db, account_key)
     token = create_access_token(

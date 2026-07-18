@@ -176,6 +176,25 @@ body {
 .secondaryButton:disabled,
 .dangerButton:disabled { cursor: wait; opacity: .55; }
 .formError { margin: 0; color: #b02a20; font-size: 12px; line-height: 1.5; }
+.simpleAuthPanel { padding-top: 26px; }
+.simpleAuthPanel h1 { font-size: 32px; }
+.simpleGuide { margin: 10px 0 26px; color: #4f555c; font-size: 16px; line-height: 1.65; }
+.simpleGuide strong { color: var(--ink); }
+.simpleLoginForm { gap: 20px; }
+.formStack .simpleField { gap: 10px; font-size: 16px; }
+.simpleFieldLabel { display: flex; align-items: center; gap: 9px; }
+.simpleFieldLabel b { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: white; font-size: 14px; }
+.simpleLoginForm .simpleField > input,
+.simpleLoginForm .passwordField input { min-height: 58px; border-width: 2px; border-radius: 13px; font-size: 18px; font-weight: 700; }
+.simpleLoginForm input::placeholder { color: #91969c; font-weight: 500; }
+.passwordField { position: relative; display: block; }
+.simpleLoginForm .passwordField input { padding-right: 82px; }
+.passwordToggle { position: absolute; top: 7px; right: 7px; min-width: 66px; min-height: 44px; border: 0; border-radius: 9px; background: #f1f3f4; color: #3f454b; font: inherit; font-size: 14px; font-weight: 850; cursor: pointer; }
+.simpleLoginButton { min-height: 58px; font-size: 18px; }
+.simpleLoginError { padding: 12px; border-radius: 10px; background: #fff0ef; font-size: 15px; font-weight: 700; }
+.loginHelp { display: grid; gap: 5px; margin-top: 24px; padding: 15px; border-radius: 12px; background: #f5f6f7; color: #555b62; font-size: 14px; line-height: 1.55; }
+.loginHelp strong { color: var(--ink); font-size: 15px; }
+.legacyLoginToggle { min-height: 44px; margin-top: 5px; padding: 0 10px; border: 1px solid #d5d9dd; border-radius: 9px; background: white; color: #3f454b; font: inherit; font-size: 13px; font-weight: 800; cursor: pointer; }
 
 .workShell { padding-bottom: max(30px, env(safe-area-inset-bottom)); }
 .workAppbar { min-height: 60px; }

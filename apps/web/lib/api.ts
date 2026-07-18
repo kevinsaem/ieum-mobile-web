@@ -57,9 +57,9 @@ export async function apiRequest<T>(
   return body as T;
 }
 
-export function login(email: string, password: string): Promise<SessionData> {
+export function login(loginId: string, password: string): Promise<SessionData> {
   return apiRequest<SessionData>("/auth/login", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ login_id: loginId, password }),
   });
 }

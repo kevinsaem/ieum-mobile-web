@@ -32,17 +32,18 @@ def seed_demo() -> None:
         db.flush()
 
         demo_users = [
-            ("user-donor", "donor@ieum.local", "정담 담당자", "DONOR", donor_org.id),
-            ("user-member", "member@ieum.local", "김이음", "MEMBER", council_org.id),
-            ("user-admin", "admin@ieum.local", "운영 담당자", "ADMIN", council_org.id),
+            ("user-donor", "100001", "donor@ieum.local", "정담 담당자", "DONOR", donor_org.id),
+            ("user-member", "200001", "member@ieum.local", "김이음", "MEMBER", council_org.id),
+            ("user-admin", "900001", "admin@ieum.local", "운영 담당자", "ADMIN", council_org.id),
         ]
-        for user_id, email, name, role, organization_id in demo_users:
+        for user_id, login_id, email, name, role, organization_id in demo_users:
             existing = db.scalar(select(User).where(User.email == email))
             if existing is None:
                 db.add(
                     User(
                         id=user_id,
                         email=email,
+                        login_id=login_id,
                         password_hash=hash_password(password),
                         name=name,
                         role=role,
@@ -50,6 +51,10 @@ def seed_demo() -> None:
                         is_active=True,
                     )
                 )
+            elif existing.login_id is None:
+                existing.login_id = login_id
+            elif existing.login_id != login_id:
+                raise RuntimeError(f"{email} 계정의 사용자 번호가 예상값과 다릅니다.")
         db.commit()
 
     print("demo_seed=ready users=3 organizations=2")

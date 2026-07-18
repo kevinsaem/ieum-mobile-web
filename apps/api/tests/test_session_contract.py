@@ -3,6 +3,46 @@ from fastapi.testclient import TestClient
 from app.security import decode_access_token
 
 
+def test_six_digit_user_number_and_password_login(client: TestClient) -> None:
+    response = client.post(
+        "/auth/login",
+        json={"login_id": "700001", "password": "246810"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["user"]["name"] == "간편 로그인 사용자"
+    assert response.json()["user"]["role"] == "MEMBER"
+
+
+def test_simple_login_rejects_non_ascii_digits(client: TestClient) -> None:
+    response = client.post(
+        "/auth/login",
+        json={"login_id": "١٢٣٤٥٦", "password": "246810"},
+    )
+
+    assert response.status_code == 422
+
+
+def test_legacy_user_without_login_id_can_use_email(client: TestClient) -> None:
+    response = client.post(
+        "/auth/login",
+        json={"email": "legacy@ieum.local", "password": "legacy-password"},
+    )
+
+    assert response.status_code == 200
+    assert response.json()["user"]["name"] == "기존 사용자"
+
+
+def test_simple_login_uses_easy_error_message(client: TestClient) -> None:
+    response = client.post(
+        "/auth/login",
+        json={"login_id": "700001", "password": "000000"},
+    )
+
+    assert response.status_code == 401
+    assert response.json()["detail"] == "사용자 번호 또는 비밀번호를 확인해 주세요."
+
+
 def test_access_token_lifetime_is_at_most_30_minutes(client: TestClient) -> None:
     response = client.post(
         "/auth/login",
